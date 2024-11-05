@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Main from './Components/main'
+import Home from './Components/Home'
 import Navbar from './Components/Navbar'
 import {  DataContext } from './Context/UserContext'
 
@@ -11,7 +11,7 @@ function App() {
     
     <DataContext.Provider value={{Data, setData}}>
     <Navbar/>
-    <Main/>
+    <Home/>
     </DataContext.Provider>
 
   )
