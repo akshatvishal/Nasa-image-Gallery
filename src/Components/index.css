@@ -3,31 +3,36 @@
   padding: 0;
 }
 .logo {
-  background-color: red;
-  height: 2rem;
-  width: 2rem;
+  background:url('../assets/Nasa.png');
+  background-position: center;
+  background-size: cover;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
   margin-right: 15rem;
 }
+
 .head {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: blue;
   height: 10vh;
+  box-shadow: 2px 0px 15px 1px black;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 .items {
   display: flex;
-  background-color: red;
   list-style: none;
-  gap: 2rem;
+  gap: 4rem;
+  font-size: large;
 }
 .button {
   margin-right: 2rem;
   display: inline-block;
   width: 4.25rem;
   height: 2.25rem;
-  background-color: rgb(229, 229, 229);
+  background-color: rgb(185, 185, 185);
   border-radius: 25px;
   position: relative;
   cursor: pointer;
@@ -35,26 +40,36 @@
 .button::before {
   position: absolute;
   content: "";
-  background-color: rgb(215, 215, 0);
+  background-color: rgb(255, 255, 255);
   height: 2rem;
   width: 2rem;
   margin: 0.1rem 0.15rem;
   border-radius: 100%;
 }
-input:checked + .button {
+input:checked +.button {
   background-color: rgb(243, 243, 243);
 }
-input:checked + .button::before {
+
+input:checked +.button::before {
   background-color: black;
   transform: translateX(2rem);
 }
 .darkmode input {
   display: none;
 }
-.inner {
-  position: relative;
+
+/* main css */
+
+.card{
+  display: inline-block;
+  /* position: absolute; */
   height: max-content;
-  width: 100%;
+  max-height: 220px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.inner {
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
@@ -63,42 +78,110 @@ input:checked + .button::before {
   transform: rotateY(-180deg);
   height: max-content;
   background-color: rgb(208, 208, 208);
-  border-radius: 1rem;
 }
 .front,
 .back {
   backface-visibility: hidden;
 }
 .front img {
-  padding: 0.5rem;
-  min-height: 200px;
-  max-height: 500px;
-  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  display: inline-block;
+  object-fit: cover;
 }
 .front {
   display: flex;
-  height: fit-content;
   overflow: hidden;
   justify-content: center;
-  padding: 1rem 0.5rem;
-  /* border: 2px solid; */
-  background-color: rgb(208, 208, 208);
-  border-radius: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(207, 205, 205);
 }
-.back {
+.landscape .back{
+  grid-row: span 1;
+}
+.back{
   font-size: 0.4rem;
-  overflow: auto;
   background-color: rgb(208, 208, 208);
+  max-height: 150px;
+  overflow-y:hidden;
   text-align: center;
-  /* border-radius: 1rem; */
+  scroll-behavior: hidden;
   position: absolute;
   top: 2rem;
   transform: rotateY(180deg);
 }
-.content {
-  margin-top: 1rem;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 2rem;
+@keyframes auto-scroll {
+  0% {
+    transform: translateY(0); 
+  }
+  50% {
+    transform: translateY(-50%); 
+  }
+  100% {
+    transform: translateY(0); 
+  }
+}
+
+.back h1{
+  padding: 0 20px; 
+}
+.content{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  grid-template-rows: repeat(300px);
+  column-gap: -2rem;
+  margin: 2rem 7rem;
+  gap: 1rem;
+}
+.landscape h1{
+  animation: auto-scroll 15s linear infinite;
+}
+.portrait{
+  grid-row: span 2;
+  max-height: fit-content;
+}
+.input{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input input{
+  padding: 0.6rem 3rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgb(208, 208, 208);
+}
+/* Light Mode Styles */
+body {
+  background-color: white;
+  color: black;
+}
+
+.head {
+  background-color: #ffffff;
+}
+
+.card .front, .card .back, .card .inner {
+  background-color: rgb(207, 205, 205);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #170F55;
+  color: white;
+
+}
+
+body.dark-mode .head {
+  background-color: #170F55;
+}
+
+body.dark-mode .card .front,
+body.dark-mode .card .back,
+body.dark-mode .card .inner {
+  background-color: #170F55;
 }
