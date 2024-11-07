@@ -8,6 +8,7 @@ function Home() {
   const value = useContext(DataContext);
   const {query, setQuery} = useContext(queryContext);
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [page,setPage]=useState(1);
 
   
@@ -47,10 +48,12 @@ function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
+      
       const data = await fetchNASAImages();
       if (data) {
-        value.setData((prevData) => [...prevData, ...data]); // Append new data on page change
+        value.setData((prevData) => [...prevData, ...data]);
       }
+      setLoading2(false)
     };
 
     fetchData();
@@ -68,19 +71,23 @@ function Home() {
       setQuery(e.target.value);
     }, 1000);
   };
+  const handlescroll = (e) => {
+    setLoading2(true)
+    if(timer){
+      clearTimeout(timer)
+    }
+    timer=setTimeout(() => {
+      setPage((prev)=> prev +1);
+    }, 1500);
+  };
 
   const handScroll=()=>{
     if((window.innerHeight+ document.documentElement.scrollTop+1)>=document.documentElement.scrollHeight)
     {
-      setPage((prev)=> prev +1)
+      handlescroll();
     }
   }
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      console.log(e)
-    }
-  }
 
   return (
     <>
@@ -94,6 +101,7 @@ function Home() {
       <div className="content">
         {loading ? load() : value.Data ? <Card /> : <p>No images found.</p>}
       </div>
+        {loading2? load() : <p></p>}
     </>
   );
 }
