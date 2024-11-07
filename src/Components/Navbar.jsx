@@ -21,16 +21,15 @@ function Navbar() {
       document.body.style.background = "none";
     }
   }, [isDarkMode]);
-  
 
   return (
     <div className="head">
       <div className="logo"></div>
 
       <ul className="items">
-        <Link to='/Home'>Home</Link>
-        <Link to='/Apod'>APOD</Link>
-        <Link to='/Neows'>Neows</Link>
+        <Link to="/Home">Home</Link>
+        <Link to="/Apod">APOD</Link>
+        <Link to="/Neows">Neows</Link>
       </ul>
 
       <div className="darkmode">

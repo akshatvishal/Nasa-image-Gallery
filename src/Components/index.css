@@ -239,6 +239,36 @@ body {
 
 .zero{
   width: 100%;
-  
+
 }
 
+/* description */
+
+.box{
+  margin-top: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  gap: 4rem;
+}
+.box h2{
+  text-decoration: underline;
+}
+.box img {
+  min-width: 100px;  
+  max-width: 400px;   
+  width: 100%;
+  padding: 0.5rem;       
+  border: 3px solid #170F55;
+}
+.right{
+  display: flex;
+  gap: 2rem;
+}
+.texting{
+  font-size: larger;
+  max-width: 600px;
+  width: 100%;
+}
