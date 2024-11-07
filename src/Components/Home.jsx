@@ -8,6 +8,7 @@ function Home() {
   const value = useContext(DataContext);
   const {query, setQuery} = useContext(queryContext);
   const [loading, setLoading] = useState(false);
+  const [page,setPage]=useState(1);
 
   
   const load=()=>{
@@ -21,21 +22,44 @@ function Home() {
   }
 
   async function fetchNASAImages() {
-    setLoading(true);
     try {
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${query}&media_type=image`);
-      value.setData(response.data.collection.items);
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${query}&media_type=image&page_size=20&page=${page}`);
+      return response.data.collection.items;
     } catch (error) {
       console.error("Error fetching data:", error);
     } 
-      setLoading(false);
   }
+
   let timer;
- 
+
   useEffect(() => {
-    fetchNASAImages()
-    
+    const fetchData = async () => {
+      setLoading(true);
+      const data=await fetchNASAImages();
+      value.setData(data)
+      setLoading(false);
+    };
+    if(query){
+      fetchData();
+    }
+
   }, [query]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchNASAImages();
+      if (data) {
+        value.setData((prevData) => [...prevData, ...data]); // Append new data on page change
+      }
+    };
+
+    fetchData();
+  }, [page]);
+
+  useEffect(()=>{
+    window.addEventListener("scroll",handScroll)
+  },[])
+
   const handleChange = (e) => {
     if(timer){
       clearTimeout(timer)
@@ -44,6 +68,19 @@ function Home() {
       setQuery(e.target.value);
     }, 1000);
   };
+
+  const handScroll=()=>{
+    if((window.innerHeight+ document.documentElement.scrollTop+1)>=document.documentElement.scrollHeight)
+    {
+      setPage((prev)=> prev +1)
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log(e)
+    }
+  }
 
   return (
     <>

@@ -5,7 +5,7 @@ import { DataContext, queryContext } from "./Context/UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [Data, setData] = useState(0);
+  const [Data, setData] = useState([]);
   const [query, setQuery] = useState("");
   return (
     <queryContext.Provider value={{query,setQuery}}>
