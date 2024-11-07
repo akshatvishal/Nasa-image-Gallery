@@ -99,7 +99,7 @@ function Home() {
         />
       </div>
       <div className="content">
-        {loading ? load() : value.Data ? <Card /> : <p>No images found.</p>}
+        {loading ? load() : value.Data.length > 0  ? <Card /> : <h2 className="Zero">No images found.</h2>}
       </div>
         {loading2? load() : <p></p>}
     </>
