@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./index.css";
 import nasalogo from "../assets/Nasa.png";
 import background from "../assets/Bg.jpg";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -27,9 +28,9 @@ function Navbar() {
       <div className="logo"></div>
 
       <ul className="items">
-        <li>Home</li>
-        <li>APOD</li>
-        <li>Neows</li>
+        <Link to='/Home'>Home</Link>
+        <Link to='/Apod'>APOD</Link>
+        <Link to='/Neows'>Neows</Link>
       </ul>
 
       <div className="darkmode">

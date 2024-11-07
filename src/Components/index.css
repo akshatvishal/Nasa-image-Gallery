@@ -27,6 +27,14 @@
   gap: 4rem;
   font-size: large;
 }
+.items *{
+  all: unset;
+  cursor: pointer;
+}
+.items *:hover{
+  color: #2104ff;
+  cursor: pointer;
+}
 .button {
   margin-right: 2rem;
   display: inline-block;
@@ -228,3 +236,4 @@ body {
 .dark-mode .card .inner {
   background-color: #170F55;
 }
+

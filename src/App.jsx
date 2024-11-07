@@ -3,6 +3,7 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import { DataContext, queryContext } from "./Context/UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Description from "./Components/Description";
 
 function App() {
   const [Data, setData] = useState([]);
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
+            <Route path="/Home/:nasa_id" element={<Description />} />
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>

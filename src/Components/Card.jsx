@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../Context/UserContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Card() {
   const value = useContext(DataContext);
+  const navigate=useNavigate();
   
   const [imageDimensions, setImageDimensions] = useState({});
 
@@ -34,6 +36,7 @@ function Card() {
             <div
               className={`card ${orientation === "portrait" ? "portrait" : "landscape"}`}
               key={item.data[0].nasa_id}
+              onClick={()=>navigate(`/Home/${item.data[0].nasa_id}`)}
             >
               <div className="inner">
                 <div className="front">
