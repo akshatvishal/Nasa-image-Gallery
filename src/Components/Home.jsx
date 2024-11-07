@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DataContext, queryContext } from "../Context/UserContext";
+import "./index.css";
 import Card from "./Card";
 import axios from "axios";
 
@@ -7,14 +8,16 @@ function Home() {
   const value = useContext(DataContext);
   const {query, setQuery} = useContext(queryContext);
   const [loading, setLoading] = useState(false);
-let timer;
-  const debounce=function(fn,d){
-    return function(){
-      clearTimeout(timer);
-      timer=setTimeout(() => {
-        fn()
-      }, d);
-    }
+
+  
+  const load=()=>{
+    return(
+      <div className="loadcontainer">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    )
   }
 
   async function fetchNASAImages() {
@@ -27,18 +30,19 @@ let timer;
     } 
       setLoading(false);
   }
-
-  const debouncedFetchNASAImages = debounce(fetchNASAImages, 1000);
+  let timer;
+ 
   useEffect(() => {
-    if (query) {
-      debouncedFetchNASAImages();
-    }
-    else{
-      setQuery([])
-    }
+    fetchNASAImages()
+    
   }, [query]);
   const handleChange = (e) => {
-    setQuery(e.target.value);
+    if(timer){
+      clearTimeout(timer)
+    }
+    timer=setTimeout(() => {
+      setQuery(e.target.value);
+    }, 1000);
   };
 
   return (
@@ -51,7 +55,7 @@ let timer;
         />
       </div>
       <div className="content">
-        {loading ? <div className="loading"></div> : value.Data ? <Card /> : <p>No images found.</p>}
+        {loading ? load() : value.Data ? <Card /> : <p>No images found.</p>}
       </div>
     </>
   );

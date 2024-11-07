@@ -17,7 +17,7 @@
   justify-content: space-around;
   align-items: center;
   height: 10vh;
-  box-shadow: 2px 0px 15px 1px black;
+  box-shadow: 0px -1px 10px 0.1px black;
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
@@ -124,6 +124,7 @@ input:checked +.button::before {
   }
 }
 
+
 .back h1{
   padding: 0 20px; 
 }
@@ -159,29 +160,70 @@ input:checked +.button::before {
 body {
   background-color: white;
   color: black;
+  overflow-x: hidden;
 }
 
 .head {
-  background-color: #ffffff;
+  background-color: #d1d1d1;
 }
 
 .card .front, .card .back, .card .inner {
   background-color: rgb(207, 205, 205);
 }
+@keyframes load {
+  0%{
+    transform: translateY(0%);
+  }
+  50%{
+    transform: translateY(40%);
+  }
+  100%{
+    transform: translateY(0%);
+  }
+}
+
+/* loading */
+.loadcontainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:0.8rem;
+}
+.loadcontainer div{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: rgb(130, 130, 130);
+  
+}
+.loadcontainer :nth-child(1){
+  animation: load 600ms ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+.loadcontainer :nth-child(2){
+  animation: load 600ms ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.loadcontainer :nth-child(3){
+  animation: load 600ms ease-in-out infinite;
+  animation-delay: 0.3s;
+}
 
 /* Dark Mode Styles */
-body.dark-mode {
+.dark-mode{
+  height: 100vh;
   background-color: #170F55;
   color: white;
-
+  background-size: contain;
 }
 
-body.dark-mode .head {
+.dark-mode .head {
   background-color: #170F55;
 }
 
-body.dark-mode .card .front,
-body.dark-mode .card .back,
-body.dark-mode .card .inner {
+.dark-mode .card .front,
+.dark-mode .card .back,
+.dark-mode .card .inner {
   background-color: #170F55;
 }

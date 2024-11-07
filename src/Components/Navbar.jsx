@@ -20,6 +20,7 @@ function Navbar() {
       document.body.style.background = "none";
     }
   }, [isDarkMode]);
+  
 
   return (
     <div className="head">
