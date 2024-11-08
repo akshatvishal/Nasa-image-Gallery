@@ -1,6 +1,12 @@
-* {
+
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Lilita+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Varela+Round&display=swap');
+
+*{
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 .logo {
   background:url('../assets/Nasa.png');
@@ -271,4 +277,52 @@ body {
   font-size: larger;
   max-width: 600px;
   width: 100%;
+}
+
+/* apod style */
+
+
+.gradient{
+  position: absolute;
+  height: inherit;
+  width: 100%;
+  background:linear-gradient(180deg, rgba(0, 0, 0, 0), black);
+}
+.image-container img{
+  height: 100%;
+  width: 100%;
+}
+.image-container{
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.boxes{
+  background-color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+.describe{
+  border-radius: 2rem;
+  display: flex;
+  width: max-content;
+  justify-self: center;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: column;
+  margin-top: 2rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgba(0, 0, 255, 0.201);
+  margin-bottom: 4rem;
+}
+.describe h1{
+  font-size: 3rem;
+}
+.describe p{
+  font-size: 1.5rem;
+  max-width: 70vw;
 }

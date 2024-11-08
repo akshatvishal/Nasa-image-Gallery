@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import { DataContext, queryContext } from "./Context/UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Description from "./Components/Description";
+import Apod from "./Components/Apod";
 
 function App() {
   const [Data, setData] = useState([]);
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Home/:nasa_id" element={<Description />} />
+            <Route path="/Apod" element={<Apod />} />
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>

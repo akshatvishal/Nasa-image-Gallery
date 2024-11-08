@@ -68,7 +68,7 @@ function Home() {
     }
     timer = setTimeout(() => {
       setQuery(e.target.value);
-    }, 1000);
+    }, 300);
   };
   const handlescroll = (e) => {
     setLoading2(true);
